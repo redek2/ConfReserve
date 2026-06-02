@@ -1,0 +1,39 @@
+﻿@model ConfReserve.Models.Entities.ConferenceRoom
+
+@{
+    ViewData["Title"] = "Usuń Salę Konferencyjną";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger shadow">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Czy na pewno chcesz usunąć tę salę?</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Usunięcie sali spowoduje również kaskadowe usunięcie wszystkich powiązanych z nią rezerwacji.</p>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4">Nazwa:</dt>
+                        <dd class="col-sm-8 fw-bold">@Model.Name</dd>
+
+                        <dt class="col-sm-4">Pojemność:</dt>
+                        <dd class="col-sm-8">@Model.Capacity osób</dd>
+
+                        <dt class="col-sm-4">Cena/h:</dt>
+                        <dd class="col-sm-8">@Model.PricePerHour.ToString("C")</dd>
+                    </dl>
+
+                    <form asp-action="Delete" class="mt-4">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+                            <button type="submit" class="btn btn-danger">Potwierdź usunięcie</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

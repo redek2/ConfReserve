@@ -1,0 +1,52 @@
+@model IEnumerable<ConfReserve.Models.Entities.ConferenceRoom>
+
+@{
+    ViewData["Title"] = "Zarz¹dzanie Salami Konferencyjnymi";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>@ViewData["Title"]</h2>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Dodaj now¹ salê
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover table-striped mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nazwa Sali</th>
+                        <th>Pojemnoœæ</th>
+                        <th>Cena za godzinê</th>
+                        <th class="text-end">Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">Brak zdefiniowanych sal konferencyjnych.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="align-middle fw-bold">@item.Name</td>
+                                <td class="align-middle">@item.Capacity os.</td>
+                                <td class="align-middle">@item.PricePerHour.ToString("C")</td>
+                                <td class="text-end">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-2">Edytuj</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Usuñ</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
