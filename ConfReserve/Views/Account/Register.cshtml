@@ -1,0 +1,66 @@
+﻿@model ConfReserve.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Rejestracja użytkownika";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h4 class="mb-0">Utwórz nowe konto</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Register" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FirstName" class="form-label">Imię</label>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LastName" class="form-label">Nazwisko</label>
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Adres E-mail</label>
+                            <input asp-for="Email" class="form-control" placeholder="name@example.com" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Hasło</label>
+                            <input asp-for="Password" class="form-control" placeholder="Min. 6 znaków" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="ConfirmPassword" class="form-label">Potwierdź hasło</label>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="Powtórz hasło" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark w-100 py-2 mb-3">Zarejestruj się</button>
+
+                        <div class="text-center">
+                            <span class="text-muted">Masz już konto?</span>
+                            <a asp-action="Login" class="text-decoration-none fw-bold text-dark">Zaloguj się</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
