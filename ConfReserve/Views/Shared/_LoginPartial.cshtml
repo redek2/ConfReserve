@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ConfReserve.Models.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var user = await UserManager.GetUserAsync(User);
+        var displayName = user != null ? $"{user.FirstName} {user.LastName}" : User.Identity?.Name;
+
+        <li class="nav-item d-flex align-items-center">
+            <span class="nav-link text-dark me-3">Witaj, <strong class="text-secondary">@displayName</strong>!</span>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark py-1 px-3 border border-1 rounded-2 bg-light">Wyloguj</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark me-2" asp-controller="Account" asp-action="Register">Rejestracja</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-dark px-3" asp-controller="Account" asp-action="Login">Logowanie</a>
+        </li>
+    }
+</ul>
