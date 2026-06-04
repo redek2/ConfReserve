@@ -27,13 +27,42 @@
 
         <div class="col-lg-5 mb-4">
             <div class="card shadow border-0 p-4 h-100">
-                <h4 class="fw-bold mb-3 text-center text-dark"><i class="bi bi-clock-history"></i> Rezerwacja terminu</h4>
-                <div class="alert alert-secondary text-center my-auto py-5 border-0 rounded-3">
-                    <i class="bi bi-hourglass-split display-4 text-muted mb-3"></i>
-                    <h6>Formularz rezerwacji</h6>
-                    <p class="small text-muted mb-0">Logika wyboru daty i walidacji zajętości zostanie zaimplementowana w następnym kroku.</p>
-                </div>
-                <a asp-action="Index" class="btn btn-secondary w-100 mt-3">Anuluj i wróć</a>
+                <h4 class="fw-bold mb-3 text-center text-dark"><i class="bi bi-calendar-check"></i> Rezerwacja terminu</h4>
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger small py-2 shadow-sm mb-3">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> @TempData["ErrorMessage"]
+                    </div>
+                }
+
+                <form asp-controller="Reservations" asp-action="Create" method="post" class="my-auto">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="conferenceRoomId" value="@Model.Id" />
+
+                    <div class="mb-3">
+                        <label for="startTime" class="form-label fw-bold small text-secondary">Data i godzina rozpoczęcia</label>
+                        <input type="datetime-local" id="startTime" name="startTime" class="form-control" required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="endTime" class="form-label fw-bold small text-secondary">Data i godzina zakończenia</label>
+                        <input type="datetime-local" id="endTime" name="endTime" class="form-control" required />
+                    </div>
+
+                    <div class="card bg-light border-0 p-3 mb-4 rounded-3">
+                        <span class="text-muted small"><i class="bi bi-info-circle"></i> Informacja o rozliczeniu:</span>
+                        <span class="small text-dark mt-1">
+                            Koszt wynajmu tej sali wynosi <strong>@Model.PricePerHour.ToString("C")</strong> za każdą rozpoczętą godzinę zegarową.
+                        </span>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
+                        <i class="bi bi-bookmark-plus-fill me-1"></i> Wyślij wniosek o rezerwację
+                    </button>
+                </form>
+
+                <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-3">Anuluj i wróć</a>
             </div>
         </div>
     </div>
