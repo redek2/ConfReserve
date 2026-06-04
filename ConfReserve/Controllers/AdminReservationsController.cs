@@ -30,7 +30,7 @@ namespace ConfReserve.Controllers
 
             ViewBag.TotalRevenue = reservations
                 .Where(r => r.Status == "Approved")
-                .Sum(r => (r.EndTime - r.StartTime).TotalHours * (double)r.ConferenceRoom!.PricePerHour);
+                .Sum(r => Math.Ceiling((r.EndTime - r.StartTime).TotalHours) * (double)r.ConferenceRoom!.PricePerHour);
 
             return View(reservations);
         }

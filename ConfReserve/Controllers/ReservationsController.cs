@@ -111,20 +111,22 @@ namespace ConfReserve.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetOccupiedSlots(int conferencceRoomId)
+        public async Task<IActionResult> GetOccupiedSlots(int conferenceRoomId)
         {
-            var occupiedSlots = await _context.Reservations
-                .Where(r => r.ConferenceRoomId == conferencceRoomId && r.Status != "Cancelled")
-                .Select(r => new
-                {
-                    start = r.StartTime.ToString("yyyy-MM-dd HH:mm"),
-                    end = r.EndTime.ToString("yyyy-MM-dd HH:mm")
-                })
+            // Pobieramy surowe dane z bazy bez formatowania ToString wewnątrz SQL
+            var slotsRaw = await _context.Reservations
+                .Where(r => r.ConferenceRoomId == conferenceRoomId && r.Status != "Cancelled")
+                .Select(r => new { r.StartTime, r.EndTime })
                 .ToListAsync();
+
+            // Formatujemy na tekst dopiero po pobraniu danych (w pamięci aplikacji)
+            var occupiedSlots = slotsRaw.Select(r => new
+            {
+                start = r.StartTime.ToString("yyyy-MM-dd HH:mm"),
+                end = r.EndTime.ToString("yyyy-MM-dd HH:mm")
+            }).ToList();
 
             return Json(occupiedSlots);
         }
-
-
     }
 }

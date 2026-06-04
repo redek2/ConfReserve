@@ -1,23 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Brak dostępu";
+    ViewData["Title"] = "Brak Dostępu";
 }
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6 text-center">
-            <div class="p-5 bg-light rounded-3 shadow">
-                <div class="text-danger display-1 mb-3">
-                    <i class="bi bi-exclamation-triangle-fill"></i> 403
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 border-top border-4 border-danger rounded-4 hover-shadow">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle mb-3 bg-danger bg-opacity-10 text-danger">
+                        <i class="bi bi-shield-slash display-5"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-2">Błąd 403: Odmowa dostępu</h3>
+                    <p class="text-muted small mb-4">
+                        Twoje konto nie posiada uprawnień wymaganych do wyświetlenia tej zawartości.
+                        Jeśli uważasz, że to błąd, skontaktuj się z administratorem systemu.
+                    </p>
+
+                    <div class="d-grid pt-2">
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-nordic-dark py-2.5 fw-bold rounded-3 shadow-sm">
+                            <i class="bi bi-house-door me-1"></i> Wróć do strony głównej
+                        </a>
+                    </div>
                 </div>
-                <h2 class="fw-bold mb-3">Dostęp zablokowany</h2>
-                <p class="text-muted mb-4">
-                    Nie posiadasz wystarczających uprawnień (ról), aby wyświetlić tę stronę.
-                    Ta sekcja jest przeznaczona wyłącznie dla administratorów systemu[cite: 1, 8].
-                </p>
-                <hr />
-                <a asp-controller="Home" asp-action="Index" class="btn btn-dark px-4 py-2 mt-3">
-                    Powrót do strony głównej
-                </a>
             </div>
         </div>
     </div>

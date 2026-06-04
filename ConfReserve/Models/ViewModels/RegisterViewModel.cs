@@ -18,6 +18,7 @@ namespace ConfReserve.Models.ViewModels
 
         [Required(ErrorMessage = "Hasło jest wymagane.")]
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Hasło musi mieć co najmniej 6 znaków.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
 
         [DataType(DataType.Password)]

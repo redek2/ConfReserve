@@ -1,48 +1,86 @@
-﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿:root {
+    --nordic-dark: #0b3c4d;
+    --nordic-primary: #14b8a6;
+    --nordic-bg: #f4f8fa;
+    --nordic-text: #1e293b;
+    --nordic-muted: #64748b;
 }
 
-a {
-  color: #0077cc;
+html, body {
+    height: 100%;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+body {
+    background-color: var(--nordic-bg);
+    color: var(--nordic-text);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.content-wrapper {
+    flex: 1 0 auto;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+footer {
+    flex-shrink: 0;
+    background-color: #06222d;
+    color: #94a3b8;
+    border-top: 2px solid var(--nordic-primary);
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.navbar-nordic {
+    background: linear-gradient(135deg, #0b3c4d 0%, #06222d 100%) !important;
+    border-bottom: 3px solid var(--nordic-primary);
+    backdrop-filter: blur(8px);
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+.brand-nordic {
+    color: #ffffff !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s;
 }
+
+    .brand-nordic:hover {
+        transform: scale(1.02);
+    }
+
+.nav-link-nordic {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.375rem;
+    transition: all 0.25s ease-in-out;
+}
+
+    .nav-link-nordic:hover {
+        color: #ffffff !important;
+        background-color: rgba(20, 184, 166, 0.15);
+    }
+
+.nav-link-admin {
+    color: #99f6e4 !important;
+    border: 1px dashed rgba(20, 184, 166, 0.4);
+}
+
+    .nav-link-admin:hover {
+        color: #ffffff !important;
+        background-color: rgba(20, 184, 166, 0.3) !important;
+        border-color: var(--nordic-primary);
+    }
+
+.card {
+    border: none !important;
+    border-radius: 0.75rem !important;
+    background-color: #ffffff;
+}
+
+.hover-shadow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+    .hover-shadow:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 20px rgba(11, 60, 77, 0.06) !important;
+    }

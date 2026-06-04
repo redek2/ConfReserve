@@ -7,31 +7,31 @@
 <div class="container mt-4">
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-action="Index" class="text-dark">Wszystkie sale</a></li>
-            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+            <li class="breadcrumb-item"><a asp-action="Index" class="text-info text-decoration-none small">Wszystkie sale</a></li>
+            <li class="breadcrumb-item active small" aria-current="page">@Model.Name</li>
         </ol>
     </nav>
 
     <div class="row">
         <div class="col-lg-7 mb-4">
-            <div class="card shadow-sm border-0 p-4 bg-light rounded-3 h-100">
+            <div class="card shadow-sm border-0 p-4 p-md-5 bg-white rounded-4 h-100 hover-shadow">
                 <h2 class="fw-bold mb-3 text-dark">@Model.Name</h2>
-                <div class="d-flex gap-3 mb-4">
-                    <span class="badge bg-dark p-2 fs-6"><i class="bi bi-people"></i> Do @Model.Capacity osób</span>
-                    <span class="badge bg-secondary p-2 fs-6"><i class="bi bi-cash-coin"></i> @Model.PricePerHour.ToString("C") / godzina</span>
+                <div class="d-flex gap-2 mb-4">
+                    <span class="badge bg-info bg-opacity-10 text-info p-2 px-3 rounded-3"><i class="bi bi-people me-1"></i> Do @Model.Capacity osób</span>
+                    <span class="badge bg-secondary bg-opacity-10 text-secondary p-2 px-3 rounded-3"><i class="bi bi-cash-coin me-1"></i> @Model.PricePerHour.ToString("C") / h</span>
                 </div>
-                <h5 class="fw-bold text-secondary">Opis przestrzeni</h5>
-                <p class="text-muted style-description" style="white-space: pre-line;">@Model.Description</p>
+                <h5 class="fw-bold text-dark opacity-75 mb-2">Opis przestrzeni</h5>
+                <p class="text-muted small" style="white-space: pre-line; line-height: 1.6;">@Model.Description</p>
             </div>
         </div>
 
         <div class="col-lg-5 mb-4">
-            <div class="card shadow border-0 p-4 h-100">
-                <h4 class="fw-bold mb-3 text-center text-dark"><i class="bi bi-calendar-check"></i> Rezerwacja terminu</h4>
+            <div class="card shadow-sm border-0 p-4 rounded-4 h-100 hover-shadow">
+                <h4 class="fw-bold mb-3 text-center text-dark"><i class="bi bi-calendar-check text-info me-1"></i> Rezerwacja terminu</h4>
 
                 @if (TempData["ErrorMessage"] != null)
                 {
-                    <div class="alert alert-danger small py-2 shadow-sm mb-3">
+                    <div class="alert alert-danger small py-2 shadow-sm mb-3 rounded-3">
                         <i class="bi bi-exclamation-triangle-fill me-1"></i> @TempData["ErrorMessage"]
                     </div>
                 }
@@ -42,36 +42,36 @@
 
                     <div class="mb-3">
                         <label for="startTime" class="form-label fw-bold small text-secondary">Data i godzina rozpoczęcia</label>
-                        <input type="datetime-local" id="startTime" name="startTime" class="form-control" required />
+                        <input type="datetime-local" id="startTime" name="startTime" class="form-control rounded-3" required />
                     </div>
 
                     <div class="mb-4">
                         <label for="endTime" class="form-label fw-bold small text-secondary">Data i godzina zakończenia</label>
-                        <input type="datetime-local" id="endTime" name="endTime" class="form-control" required />
+                        <input type="datetime-local" id="endTime" name="endTime" class="form-control rounded-3" required />
                     </div>
 
                     <div class="mb-4">
-                        <h6 class="fw-bold small text-muted text-uppercase mb-2"><i class="bi bi-calendar-range"></i> Terminy aktualnie zajęte:</h6>
+                        <h6 class="fw-bold small text-muted text-uppercase mb-2"><i class="bi bi-calendar-range text-info me-1"></i> Terminy aktualnie zajęte:</h6>
                         <div id="occupiedSlotsLoader" class="text-center py-2 text-muted small">
-                            <span class="spinner-border spinner-border-sm me-1" role="status"></span> Pobieranie rezerwacji...
+                            <span class="spinner-border spinner-border-sm text-info me-1" role="status"></span> Pobieranie rezerwacji...
                         </div>
-                        <ul id="occupiedSlotsList" class="list-group list-group-flush small" style="max-height: 150px; overflow-y: auto;">
+                        <ul id="occupiedSlotsList" class="list-group list-group-flush small rounded-3" style="max-height: 150px; overflow-y: auto;">
                         </ul>
                     </div>
 
                     <div class="card bg-light border-0 p-3 mb-4 rounded-3">
-                        <span class="text-muted small"><i class="bi bi-info-circle"></i> Informacja o rozliczeniu:</span>
-                        <span class="small text-dark mt-1">
-                            Koszt wynajmu tej sali wynosi <strong>@Model.PricePerHour.ToString("C")</strong> za każdą rozpoczętą godzinę zegarową.
+                        <span class="text-muted small fw-bold"><i class="bi bi-info-circle text-info"></i> Rozliczenie:</span>
+                        <span class="small text-secondary mt-1" style="font-size: 0.82rem;">
+                            Koszt wynosi <strong>@Model.PricePerHour.ToString("C")</strong> za każdą rozpoczętą godzinę wynajmu.
                         </span>
                     </div>
 
-                    <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
-                        <i class="bi bi-bookmark-plus-fill me-1"></i> Wyślij wniosek o rezerwację
+                    <button type="submit" class="btn btn-nordic-dark w-100 py-2.5 fw-bold rounded-3">
+                        <i class="bi bi-bookmark-plus-fill me-1"></i> Wyślij wniosek
                     </button>
                 </form>
 
-                <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-3">Anuluj i wróć</a>
+                <a asp-action="Index" class="btn btn-outline-secondary btn-sm w-100 mt-3 rounded-3">Anuluj i wróć</a>
             </div>
         </div>
     </div>
@@ -90,9 +90,7 @@
 
             fetch(`/Reservations/GetOccupiedSlots?conferenceRoomId=${roomId}`)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Błąd podczas pobierania terminów.");
-                    }
+                    if (!response.ok) throw new Error("Błąd sieci.");
                     return response.json();
                 })
                 .then(data => {
@@ -100,20 +98,20 @@
                     listElement.innerHTML = "";
 
                     if (data.length === 0) {
-                        listElement.innerHTML = '<li class="list-group-item text-success border-0 p-1"><i class="bi bi-calendar-check-fill"></i> Ta sala nie ma jeszcze żadnych rezerwacji. Wszystkie terminy wolne!</li>';
+                        listElement.innerHTML = '<li class="list-group-item text-success border-0 bg-transparent p-1"><i class="bi bi-calendar-check-fill me-1"></i> Wszystkie terminy są wolne!</li>';
                         return;
                     }
 
                     data.forEach(slot => {
                         const li = document.createElement("li");
-                        li.className = "list-group-item border-0 p-1 text-danger d-flex align-items-center";
+                        li.className = "list-group-item border-0 bg-transparent p-1 text-danger d-flex align-items-center";
                         li.innerHTML = `<i class="bi bi-calendar-x-fill me-2 small"></i> Od: ${slot.start} &nbsp; Do: ${slot.end}`;
                         listElement.appendChild(li);
                     });
                 })
                 .catch(error => {
                     loaderElement.classList.add("d-none");
-                    listElement.innerHTML = '<li class="list-group-item text-danger border-0 p-1">Nie udało się załadować zajętych terminów.</li>';
+                    listElement.innerHTML = '<li class="list-group-item text-danger border-0 bg-transparent p-1">Nie udało się załadować zajętości.</li>';
                     console.error("AJAX Error:", error);
                 });
         });

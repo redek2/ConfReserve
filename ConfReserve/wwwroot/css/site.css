@@ -1,22 +1,49 @@
-html {
-  font-size: 14px;
+﻿html, body {
+    height: 100%;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+    --nordic-dark: #0b3c4d;
+    --nordic-primary: #14b8a6;
+    --nordic-bg: #f4f8fa;
+    --nordic-text: #1e293b;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: var(--nordic-bg) !important;
+    color: var(--nordic-text);
 }
+
+.navbar-nordic {
+    background: linear-gradient(135deg, #0b3c4d 0%, #06222d 100%) !important;
+    border-bottom: 3px solid var(--nordic-primary);
+}
+
+.btn-nordic-dark {
+    background-color: var(--nordic-dark) !important;
+    border-color: var(--nordic-dark) !important;
+    color: #ffffff !important;
+}
+
+    .btn-nordic-dark:hover {
+        background-color: #06222d !important;
+    }
+
+.btn-nordic-primary {
+    background-color: var(--nordic-primary) !important;
+    border-color: var(--nordic-primary) !important;
+    color: #ffffff !important;
+}
+
+    .btn-nordic-primary:hover {
+        background-color: #0d9488 !important;
+    }
+
+.hover-shadow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+    .hover-shadow:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 20px rgba(11, 60, 77, 0.06) !important;
+    }

@@ -1,0 +1,46 @@
+﻿@model ConfReserve.Models.Entities.ConferenceRoom
+
+@{
+    ViewData["Title"] = "Usuń Salę";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 border-top border-4 border-danger rounded-4 hover-shadow">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle mb-3 bg-danger bg-opacity-10 text-danger">
+                        <i class="bi bi-exclamation-triangle display-6"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-2">Usuwanie zasobu</h3>
+                    <p class="text-muted small mb-4">Czy na pewno chcesz bezpowrotnie usunąć poniższą salę z bazy danych? Tej operacji nie można cofnąć.</p>
+
+                    <div class="card bg-light border-0 p-4 rounded-3 text-start mb-4">
+                        <div class="row g-2">
+                            <div class="col-4 text-secondary small fw-bold">Nazwa sali:</div>
+                            <div class="col-8 text-dark fw-bold">@Model.Name</div>
+
+                            <div class="col-4 text-secondary small">Pojemność:</div>
+                            <div class="col-8 text-muted small">@Model.Capacity osób</div>
+
+                            <div class="col-4 text-secondary small">Cena / h:</div>
+                            <div class="col-8 text-muted small">@Model.PricePerHour.ToString("C")</div>
+                        </div>
+                    </div>
+
+                    <form asp-action="Delete" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger py-2.5 fw-bold rounded-3 shadow-sm">
+                                <i class="bi bi-trash3 me-1"></i> Tak, usuń salę z systemu
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary py-2 rounded-3">Anuluj operację</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

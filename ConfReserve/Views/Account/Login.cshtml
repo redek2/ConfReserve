@@ -7,36 +7,43 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <div class="card shadow-lg border-0">
-                <div class="card-header bg-dark text-white text-center py-3">
-                    <h4 class="mb-0">Panel Logowania</h4>
-                </div>
-                <div class="card-body p-4">
+            <div class="card shadow-sm border-0 rounded-4 hover-shadow">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle mb-3 bg-info bg-opacity-10 text-info">
+                            <i class="bi bi-shield-lock fs-2"></i>
+                        </div>
+                        <h3 class="fw-bold text-dark">Panel Logowania</h3>
+                        <p class="text-muted small">Zaloguj się, aby zarządzać swoimi rezerwacjami</p>
+                    </div>
+
                     <form asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
 
                         <div class="mb-3">
-                            <label asp-for="Email" class="form-label">Adres E-mail</label>
-                            <input asp-for="Email" class="form-control" placeholder="name@example.com" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <label asp-for="Email" class="form-label small fw-bold text-secondary">Adres E-mail</label>
+                            <input asp-for="Email" class="form-control rounded-3" placeholder="name@example.com" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Password" class="form-label">Hasło</label>
-                            <input asp-for="Password" class="form-control" placeholder="••••••••" />
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <label asp-for="Password" class="form-label small fw-bold text-secondary">Hasło</label>
+                            <input asp-for="Password" class="form-control rounded-3" placeholder="••••••••" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
                         </div>
 
                         <div class="form-check mb-4">
                             <input asp-for="RememberMe" class="form-check-input" />
-                            <label asp-for="RememberMe" class="form-check-label">Zapamiętaj mnie na tym urządzeniu</label>
+                            <label asp-for="RememberMe" class="form-check-label small text-muted">Zapamiętaj mnie na tym urządzeniu</label>
                         </div>
 
-                        <button type="submit" class="btn btn-dark w-100 py-2 mb-3">Zaloguj się</button>
+                        <button type="submit" class="btn btn-nordic-dark w-100 py-2.5 fw-bold rounded-3 mb-3 shadow-sm">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Zaloguj się
+                        </button>
 
-                        <div class="text-center">
-                            <span class="text-muted">Nie masz konta?</span>
-                            <a asp-action="Register" class="text-decoration-none fw-bold text-dark">Zarejestruj się</a>
+                        <div class="text-center mt-3">
+                            <span class="text-muted small">Nie masz konta?</span>
+                            <a asp-action="Register" class="text-decoration-none small fw-bold text-info">Zarejestruj się</a>
                         </div>
                     </form>
                 </div>

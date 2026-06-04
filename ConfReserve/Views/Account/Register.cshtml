@@ -1,56 +1,63 @@
 ﻿@model ConfReserve.Models.ViewModels.RegisterViewModel
 
 @{
-    ViewData["Title"] = "Rejestracja użytkownika";
+    ViewData["Title"] = "Rejestracja";
 }
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card shadow-lg border-0">
-                <div class="card-header bg-dark text-white text-center py-3">
-                    <h4 class="mb-0">Utwórz nowe konto</h4>
-                </div>
-                <div class="card-body p-4">
+            <div class="card shadow-sm border-0 rounded-4 hover-shadow">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle mb-3 bg-info bg-opacity-10 text-info">
+                            <i class="bi bi-person-plus fs-2"></i>
+                        </div>
+                        <h3 class="fw-bold text-dark">Utwórz konto</h3>
+                        <p class="text-muted small">Dołącz do systemu i zyskaj dostęp do rezerwacji sal</p>
+                    </div>
+
                     <form asp-action="Register" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label asp-for="FirstName" class="form-label">Imię</label>
-                                <input asp-for="FirstName" class="form-control" />
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                <label asp-for="FirstName" class="form-label small fw-bold text-secondary">Imię</label>
+                                <input asp-for="FirstName" class="form-control rounded-3" />
+                                <span asp-validation-for="FirstName" class="text-danger small"></span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label asp-for="LastName" class="form-label">Nazwisko</label>
-                                <input asp-for="LastName" class="form-control" />
-                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                <label asp-for="LastName" class="form-label small fw-bold text-secondary">Nazwisko</label>
+                                <input asp-for="LastName" class="form-control rounded-3" />
+                                <span asp-validation-for="LastName" class="text-danger small"></span>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Email" class="form-label">Adres E-mail</label>
-                            <input asp-for="Email" class="form-control" placeholder="name@example.com" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <label asp-for="Email" class="form-label small fw-bold text-secondary">Adres E-mail</label>
+                            <input asp-for="Email" class="form-control rounded-3" placeholder="name@example.com" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Password" class="form-label">Hasło</label>
-                            <input asp-for="Password" class="form-control" placeholder="Min. 6 znaków" />
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <label asp-for="Password" class="form-label small fw-bold text-secondary">Hasło</label>
+                            <input asp-for="Password" class="form-control rounded-3" placeholder="Min. 6 znaków" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
                         </div>
 
                         <div class="mb-4">
-                            <label asp-for="ConfirmPassword" class="form-label">Potwierdź hasło</label>
-                            <input asp-for="ConfirmPassword" class="form-control" placeholder="Powtórz hasło" />
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            <label asp-for="ConfirmPassword" class="form-label small fw-bold text-secondary">Potwierdź hasło</label>
+                            <input asp-for="ConfirmPassword" class="form-control rounded-3" placeholder="Powtórz hasło" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
                         </div>
 
-                        <button type="submit" class="btn btn-dark w-100 py-2 mb-3">Zarejestruj się</button>
+                        <button type="submit" class="btn btn-nordic-dark w-100 py-2.5 fw-bold rounded-3 mb-3 shadow-sm">
+                            <i class="bi bi-check-circle me-1"></i> Zarejestruj się
+                        </button>
 
-                        <div class="text-center">
-                            <span class="text-muted">Masz już konto?</span>
-                            <a asp-action="Login" class="text-decoration-none fw-bold text-dark">Zaloguj się</a>
+                        <div class="text-center mt-3">
+                            <span class="text-muted small">Masz już konto?</span>
+                            <a asp-action="Login" class="text-decoration-none small fw-bold text-info">Zaloguj się</a>
                         </div>
                     </form>
                 </div>

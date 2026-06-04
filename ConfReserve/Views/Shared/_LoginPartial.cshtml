@@ -3,28 +3,35 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="navbar-nav align-items-md-center gap-2">
     @if (SignInManager.IsSignedIn(User))
     {
         var user = await UserManager.GetUserAsync(User);
         var displayName = user != null ? $"{user.FirstName} {user.LastName}" : User.Identity?.Name;
 
-        <li class="nav-item d-flex align-items-center">
-            <span class="nav-link text-dark me-3">Witaj, <strong class="text-secondary">@displayName</strong>!</span>
+        <li class="nav-item">
+            <span class="nav-link text-white-50 me-2 small">
+                Witaj, <strong class="text-light">@displayName</strong>!
+            </span>
         </li>
         <li class="nav-item">
-            <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark py-1 px-3 border border-1 rounded-2 bg-light">Wyloguj</button>
+            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-sm btn-outline-light px-3 py-1">
+                    <i class="bi bi-box-arrow-right me-1"></i> Wyloguj
+                </button>
             </form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark me-2" asp-controller="Account" asp-action="Register">Rejestracja</a>
+            <a class="nav-link text-white-50 px-3" asp-controller="Account" asp-action="Register">Rejestracja</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link btn btn-outline-dark px-3" asp-controller="Account" asp-action="Login">Logowanie</a>
+            <a class="btn btn-sm btn-nordic-primary fw-bold px-3 py-1.5 shadow-sm" asp-controller="Account" asp-action="Login">
+                <i class="bi bi-box-arrow-in-right me-1"></i> Logowanie
+            </a>
         </li>
     }
 </ul>
