@@ -50,6 +50,15 @@
                         <input type="datetime-local" id="endTime" name="endTime" class="form-control" required />
                     </div>
 
+                    <div class="mb-4">
+                        <h6 class="fw-bold small text-muted text-uppercase mb-2"><i class="bi bi-calendar-range"></i> Terminy aktualnie zajęte:</h6>
+                        <div id="occupiedSlotsLoader" class="text-center py-2 text-muted small">
+                            <span class="spinner-border spinner-border-sm me-1" role="status"></span> Pobieranie rezerwacji...
+                        </div>
+                        <ul id="occupiedSlotsList" class="list-group list-group-flush small" style="max-height: 150px; overflow-y: auto;">
+                        </ul>
+                    </div>
+
                     <div class="card bg-light border-0 p-3 mb-4 rounded-3">
                         <span class="text-muted small"><i class="bi bi-info-circle"></i> Informacja o rozliczeniu:</span>
                         <span class="small text-dark mt-1">
@@ -67,3 +76,46 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const roomId = "@Model.Id";
+            const listElement = document.getElementById("occupiedSlotsList");
+            const loaderElement = document.getElementById("occupiedSlotsLoader");
+
+            fetch(`/Reservations/GetOccupiedSlots?conferenceRoomId=${roomId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Błąd podczas pobierania terminów.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    loaderElement.classList.add("d-none");
+                    listElement.innerHTML = "";
+
+                    if (data.length === 0) {
+                        listElement.innerHTML = '<li class="list-group-item text-success border-0 p-1"><i class="bi bi-calendar-check-fill"></i> Ta sala nie ma jeszcze żadnych rezerwacji. Wszystkie terminy wolne!</li>';
+                        return;
+                    }
+
+                    data.forEach(slot => {
+                        const li = document.createElement("li");
+                        li.className = "list-group-item border-0 p-1 text-danger d-flex align-items-center";
+                        li.innerHTML = `<i class="bi bi-calendar-x-fill me-2 small"></i> Od: ${slot.start} &nbsp; Do: ${slot.end}`;
+                        listElement.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    loaderElement.classList.add("d-none");
+                    listElement.innerHTML = '<li class="list-group-item text-danger border-0 p-1">Nie udało się załadować zajętych terminów.</li>';
+                    console.error("AJAX Error:", error);
+                });
+        });
+    </script>
+}

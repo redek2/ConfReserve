@@ -108,5 +108,23 @@ namespace ConfReserve.Controllers
 
             return RedirectToAction(nameof(MyReservations));
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetOccupiedSlots(int conferencceRoomId)
+        {
+            var occupiedSlots = await _context.Reservations
+                .Where(r => r.ConferenceRoomId == conferencceRoomId && r.Status != "Cancelled")
+                .Select(r => new
+                {
+                    start = r.StartTime.ToString("yyyy-MM-dd HH:mm"),
+                    end = r.EndTime.ToString("yyyy-MM-dd HH:mm")
+                })
+                .ToListAsync();
+
+            return Json(occupiedSlots);
+        }
+
+
     }
 }
